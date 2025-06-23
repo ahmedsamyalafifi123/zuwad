@@ -32,6 +32,17 @@ label {
     background-color: #f1f1f1;
 }
 
+/* Responsive table styles */
+@media screen and (max-width: 768px) {
+    #students-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+    }
+}
+
 .edit-student {
     background-color: #4CAF50;
     color: white;
@@ -179,6 +190,24 @@ label {
   @media (max-width: 768px) {
     .stat-card:has(#total-amount) {
       grid-column: span 1;
+    }
+    
+    /* Improve table responsiveness on mobile */
+    #students-table th,
+    #students-table td {
+      padding: 6px 4px;
+      font-size: 0.9em;
+    }
+    
+    .reminder-dropdown {
+      padding: 3px !important;
+      font-size: 0.9em;
+      min-width: 80px;
+    }
+    
+    /* Make the table container full width on mobile */
+    .payment-filters {
+      flex-direction: column;
     }
   }
 

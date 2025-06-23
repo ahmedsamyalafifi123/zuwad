@@ -11,7 +11,7 @@
  * Plugin Name:       Zuwad Plugin
  * Plugin URI:        https://zuwad-academy.com
  * Description:       Custom plugin for Zuwad Academy
- * Version:           1.3.974
+ * Version:           1.3.978
  * Author:            Zuwad Academy
  * Author URI:        https://zuwad-academy.com
  * Text Domain:       zuwad-plugin
@@ -23,7 +23,7 @@ if (!defined('WPINC')) {
 }
 
 // Define plugin constants
-define('ZUWAD_PLUGIN_VERSION', '1.3.974');
+define('ZUWAD_PLUGIN_VERSION', '1.3.978');
 define('ZUWAD_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('ZUWAD_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('NOTIFICATION_LOG_PATH', WP_CONTENT_DIR . '/notification_logs.log');

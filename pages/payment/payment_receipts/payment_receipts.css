@@ -347,6 +347,15 @@
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .zuwad-receipts-table th,
+    .zuwad-receipts-table td {
+        padding: 8px 6px;
+        font-size: 0.9em;
     }
     
     .zuwad-action-button .zuwad-button-text {
@@ -368,6 +377,26 @@
     
     .zuwad-receipt-section {
         margin-bottom: 15px;
+    }
+    
+    /* Improve filter responsiveness */
+    .zuwad-filter-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .zuwad-filter-group {
+        width: 100%;
+    }
+    
+    /* Improve summary section responsiveness */
+    .zuwad-summary-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .zuwad-summary-item {
+        width: 100%;
     }
 }
 
@@ -516,6 +545,9 @@
     border-radius: var(--zuwad-border-radius);
     box-shadow: var(--zuwad-card-shadow);
     background: white;
+    width: 100%;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .zuwad-receipts-table {
@@ -524,7 +556,7 @@
     margin: 20px 0;
     box-shadow: var(--zuwad-box-shadow);
     border-radius: var(--zuwad-border-radius);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .zuwad-receipts-table th,
