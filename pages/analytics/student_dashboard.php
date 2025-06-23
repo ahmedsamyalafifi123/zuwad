@@ -18,6 +18,8 @@ function zuwad_student_dashboard_shortcode()
     $is_supervisor = in_array('supervisor', $current_user->roles);
     $is_teacher = in_array('teacher', $current_user->roles);
     $is_kpi = in_array('KPI', $current_user->roles);
+    $is_accountant = in_array('Accountant', $current_user->roles);
+    $is_sales = in_array('sales', $current_user->roles);
 
     // Start output buffering
     ob_start();
@@ -331,6 +333,7 @@ function zuwad_student_dashboard_shortcode()
                     <option value="teacher">المعلمين</option>
                     <option value="supervisor">المشرفين</option>
                     <option value="KPI">مراقبي الأداء</option>
+                    <option value="Accountant">محاسب</option>
                     <option value="sales">المبيعات</option>
                 </select>
 

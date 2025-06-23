@@ -54,7 +54,7 @@
     margin: 0 auto;
     padding: 20px;
     direction: rtl;
-    background-color: #f5f7fa;
+    /* background-color: #f5f7fa; */
     border-radius: var(--zuwad-border-radius);
 }
 

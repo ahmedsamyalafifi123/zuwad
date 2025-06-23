@@ -11,7 +11,7 @@
  * Plugin Name:       Zuwad Plugin
  * Plugin URI:        https://zuwad-academy.com
  * Description:       Custom plugin for Zuwad Academy
- * Version:           1.3.978
+ * Version:           1.3.984
  * Author:            Zuwad Academy
  * Author URI:        https://zuwad-academy.com
  * Text Domain:       zuwad-plugin
@@ -23,7 +23,7 @@ if (!defined('WPINC')) {
 }
 
 // Define plugin constants
-define('ZUWAD_PLUGIN_VERSION', '1.3.978');
+define('ZUWAD_PLUGIN_VERSION', '1.3.984');
 define('ZUWAD_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('ZUWAD_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('NOTIFICATION_LOG_PATH', WP_CONTENT_DIR . '/notification_logs.log');
@@ -47,6 +47,7 @@ function zuwad_plugin_includes()
     require_once ZUWAD_PLUGIN_PATH . 'includes/sales.php';
     require_once ZUWAD_PLUGIN_PATH . 'includes/api.php';
     require_once ZUWAD_PLUGIN_PATH . 'includes/wrong_session_numbers.php';
+    require_once ZUWAD_PLUGIN_PATH . 'includes/homepage.php';
 
     // Page controllers
     require_once ZUWAD_PLUGIN_PATH . 'pages/payment/payment.php';
@@ -105,6 +106,23 @@ function zuwad_plugin_load_textdomain()
 add_action('plugins_loaded', 'zuwad_plugin_load_textdomain');
 
 /**
+ * Check if a shortcode is present in the current page content
+ *
+ * @param string $shortcode The shortcode to check for
+ * @return boolean True if the shortcode is present, false otherwise
+ */
+function zuwad_has_shortcode($shortcode) {
+    global $post;
+    
+    // Check if we're on a singular page and post content exists
+    if (is_singular() && is_a($post, 'WP_Post')) {
+        return has_shortcode($post->post_content, $shortcode);
+    }
+    
+    return false;
+}
+
+/**
  * Enqueue plugin assets (CSS/JS)
  */
 function zuwad_plugin_enqueue_assets()
@@ -120,21 +138,27 @@ function zuwad_plugin_enqueue_assets()
     wp_enqueue_script('zuwad-pdf-script', ZUWAD_PLUGIN_URL . 'assets/js/pdf.js', array('jquery', 'jspdf', 'html2canvas', 'zuwad-report-utils'), ZUWAD_PLUGIN_VERSION, true);
     wp_enqueue_script('zuwad-helper-functions', ZUWAD_PLUGIN_URL . 'assets/js/helper-functions.js', array('jquery'), ZUWAD_PLUGIN_VERSION, true);
 
-    // Page-specific assets
-    if (is_page("payments")) {
+    // Check if we're on a page with the zuwad_homepage shortcode or the payments page
+    if (zuwad_has_shortcode('zuwad_homepage')) {
+        // Load all necessary assets for the homepage/dashboard
         wp_enqueue_style('zuwad-payment-style', ZUWAD_PLUGIN_URL . 'pages/payment/payment.css', array(), ZUWAD_PLUGIN_VERSION);
         wp_enqueue_script('zuwad-payment-script', ZUWAD_PLUGIN_URL . 'pages/payment/payment.js', array('jquery', 'zuwad-helper-functions'), ZUWAD_PLUGIN_VERSION, true);
         wp_enqueue_style('zuwad-supervisor-style', ZUWAD_PLUGIN_URL . 'assets/css/supervisor.css', array(), ZUWAD_PLUGIN_VERSION);
-
-
-
-    // Payment Receipts Shortcode assets
-    wp_enqueue_style('zuwad-payment-receipts-style', ZUWAD_PLUGIN_URL . 'pages/payment/payment_receipts/payment_receipts.css', array(), ZUWAD_PLUGIN_VERSION);
-    wp_enqueue_script('zuwad-payment-receipts-script', ZUWAD_PLUGIN_URL . 'pages/payment/payment_receipts/payment_receipts.js', array('jquery'), ZUWAD_PLUGIN_VERSION, true);
-    
-
-        // Localize the payment script with AJAX URL and nonce
+        
         wp_localize_script('zuwad-payment-script', 'zuwadPlugin', array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('zuwad_plugin_nonce'),
+            'userRole' => zuwad_get_current_user_role()
+        ));
+    }
+
+    if (is_page("payments")) {
+        wp_enqueue_style('zuwad-supervisor-style', ZUWAD_PLUGIN_URL . 'assets/css/supervisor.css', array(), ZUWAD_PLUGIN_VERSION);
+        wp_enqueue_style('zuwad-payment-receipts-style', ZUWAD_PLUGIN_URL . 'pages/payment/payment_receipts/payment_receipts.css', array(), ZUWAD_PLUGIN_VERSION);
+        wp_enqueue_script('zuwad-payment-receipts-script', ZUWAD_PLUGIN_URL . 'pages/payment/payment_receipts/payment_receipts.js', array('jquery'), ZUWAD_PLUGIN_VERSION, true);
+        
+        // Localize the payment script with AJAX URL and nonce
+        wp_localize_script('zuwad-payment-receipts-script', 'zuwadPlugin', array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('zuwad_plugin_nonce'),
             'userRole' => zuwad_get_current_user_role()

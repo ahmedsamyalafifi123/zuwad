@@ -180,6 +180,7 @@ jQuery(document).ready(function ($) {
       supervisor: "مشرف",
       administrator: "مدير",
       KPI: "مراقب أداء",
+      Accountant: "محاسب",
       sales: "مبيعات",
     };
 

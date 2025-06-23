@@ -14,6 +14,7 @@
                     <button class="button" data-role="admin"><?php _e('اضافة ادمن', 'zuwad-plugin'); ?></button>
                     <button class="button" data-role="superadmin"><?php _e('اضافة سوبر ادمن', 'zuwad-plugin'); ?></button>
                     <button class="button" data-role="KPI"><?php _e('اضافة مستخدم KPI 📊', 'zuwad-plugin'); ?></button>
+                    <button class="button" data-role="Accountant"><?php _e('اضافة مستخدم حسابات 📊', 'zuwad-plugin'); ?></button>
                     <button class="button" data-role="sales"><?php _e('اضافة مستخدم sales 🪙', 'zuwad-plugin'); ?></button>
                 <?php endif; ?>
             </div>

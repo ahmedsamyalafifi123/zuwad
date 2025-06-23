@@ -21,6 +21,9 @@ class Zuwad_Plugin_Roles
         add_role('KPI', 'KPI', array(
             'read' => true,
         ));
+        add_role('Accountant', 'Accountant', array(
+            'read' => true,
+        ));
         add_role('sales', 'sales', array(
             'read' => true,
         ));

@@ -14,6 +14,7 @@ function zuwad_teacher_calendar_shortcode()
     $is_teacher = in_array('teacher', $current_user->roles);
     $is_administrator = in_array('administrator', $current_user->roles);
     $is_kpi = in_array('KPI', $current_user->roles);
+    $is_accountant = in_array('Accountant', $current_user->roles);
     $is_sales = in_array('sales', $current_user->roles);
 
     // Fetch teachers based on user role
@@ -223,6 +224,9 @@ function zuwad_get_teacher_schedule()
     $is_supervisor = in_array('supervisor', $current_user->roles);
     $is_administrator = in_array('administrator', $current_user->roles);
     $is_kpi = in_array('KPI', $current_user->roles);
+    $is_accountant = in_array('Accountant', $current_user->roles);
+    $is_sales = in_array('sales', $current_user->roles);
+    $is_teacher = in_array('teacher', $current_user->roles);
 
     // Initialize variables
     $teacher_id = isset($_POST['teacher_id']) ? intval($_POST['teacher_id']) : 0;

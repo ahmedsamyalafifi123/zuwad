@@ -175,6 +175,7 @@ jQuery(document).ready(function ($) {
       administrator: "مدير",
       KPI: "مراقب أداء",
       sales: "مبيعات",
+      Accountant: "محاسب",
     };
 
     // Handle multiple roles (comma separated)
