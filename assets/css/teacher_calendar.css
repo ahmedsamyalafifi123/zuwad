@@ -1,0 +1,312 @@
+/**
+ * Zuwad Plugin - Teacher Calendar Styles
+ * 
+ * This file contains styles for the teacher calendar functionality
+ * Organization:
+ * - Calendar container and layout
+ * - Calendar cells and time slots
+ * - Event styling
+ * - Interactive elements
+ * - Modal components
+ * - Status indicators
+ */
+
+/* =====================
+   Calendar Container
+   ===================== */
+#teacher-calendar-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+#student-filter {
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 16px;
+    width: 100%; /* Full width on mobile */
+}
+
+#teacher-calendar {
+    width: 100%;
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Header toolbar */
+.fc-header-toolbar {
+    margin-bottom: 10px;
+    flex-direction: column; /* Stack header items vertically on mobile */
+    align-items: flex-start; /* Align items to the start */
+}
+
+.fc-toolbar-title {
+    font-size: 1.2em; /* Smaller title on mobile */
+    margin-bottom: 10px; /* Add space below the title */
+}
+
+.fc-button-group {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 5px; /* Add space between buttons */
+}
+
+.fc-button {
+    font-size: 0.9em; /* Smaller buttons on mobile */
+    padding: 5px 10px; /* Adjust button padding */
+}
+
+/* Events */
+.fc-event {
+    cursor: pointer;
+    background-color: #4a90e2;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.8em; /* Smaller event text on mobile */
+    white-space: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure the event content container allows wrapping */
+.fc-event-main {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    text-align: center !important;
+}
+
+/* Adjust event height */
+.fc-time-grid-event {
+    height: auto !important;
+    min-height: 30px !important;
+}
+
+.fc-timegrid-event .fc-event-main {
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    white-space: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.fc-event:hover {
+    background-color: #357abd;
+}
+
+/* Ensure the hour column is on the right */
+.fc-timegrid-axis {
+    text-align: right;
+    direction: rtl; /* Right-to-left for Arabic */
+    font-size: 0.8em; /* Smaller hour labels on mobile */
+}
+
+/* Ensure days start from the right */
+.fc-timegrid-header {
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Align the days correctly */
+.fc-col-header-cell {
+    text-align: right;
+    font-size: 0.9em; /* Smaller day labels on mobile */
+}
+
+/* Ensure the time slots are aligned correctly */
+.fc-timegrid-slot {
+    text-align: right;
+}
+
+/* Reverse the order of days */
+.fc-col-header {
+    direction: rtl; /* Force RTL for the header to reverse the order */
+}
+
+/* Move the hour column to the right */
+.fc-timegrid-axis-frame {
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Ensure the hour labels are aligned to the right */
+.fc-timegrid-axis-cushion {
+    text-align: right;
+}
+
+/* Ensure the calendar body is RTL */
+.fc-timegrid-body {
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Ensure the time slots are RTL */
+.fc-timegrid-slot {
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+/* Make the days header take the full width */
+.fc-col-header {
+    width: 100% !important;
+}
+
+.fc-col-header-cell {
+    flex: 1; /* Distribute space evenly */
+    text-align: center; /* Center the day names */
+}
+
+/* Customize event content */
+.fc-event-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.fc-event-time {
+    font-size: 0.8em; /* Smaller time text on mobile */
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .fc-header-toolbar {
+        flex-direction: column; /* Stack header items vertically */
+    }
+
+    .fc-toolbar-title {
+        font-size: 1em; /* Smaller title on mobile */
+    }
+
+    .fc-button {
+        font-size: 0.8em; /* Smaller buttons on mobile */
+        padding: 4px 8px; /* Adjust button padding */
+    }
+
+    .fc-event {
+        font-size: 0.7em; /* Smaller event text on mobile */
+    }
+
+    .fc-timegrid-axis {
+        font-size: 0.7em; /* Smaller hour labels on mobile */
+    }
+
+    .fc-col-header-cell {
+        font-size: 0.8em; /* Smaller day labels on mobile */
+    }
+}
+
+#calender-filter{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 60px;
+}
+
+.fc-icon-chevron-left::before
+{
+    content: "\e901";
+}
+.fc-icon-chevron-right::before{
+    content: "\e900";
+}
+
+.fc-direction-rtl .fc-timegrid-slot-label-frame{
+    text-align: center;
+    font-size: 12px;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+/* RTL specific styles for arrow buttons */
+.fc-prev-button,
+.fc-next-button {
+    transform: rotate(180deg); /* Flip the arrows for RTL */
+}
+
+.fc-header-toolbar {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+}
+
+.fc-prev-button {
+    margin-right: 0;
+}
+
+.fc-next-button {
+    margin-left: 0;
+}
+
+.fc .fc-toolbar.fc-header-toolbar{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Hide scrollbar for the calendar */
+.fc-scroller::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+}
+
+.fc-scroller {
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.button-row {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.button-row button {
+    flex: 1; /* Distribute space evenly */
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#share-report {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+#share-report:hover {
+    background-color: #45a049;
+}
+
+.remove-report-button {
+    background-color: #cc0101; /* Red */
+    color: white;
+}
+
+.remove-report-button:hover {
+    background-color: #e70d0d;
+}
+
+/* =====================
+   Calendar Grid
+   ===================== */
+
+/* =====================
+   Events and Appointments
+   ===================== */
+
+/* =====================
+   Interactive Elements
+   ===================== */
+
+/* =====================
+   Modal Components
+   ===================== */
+
+/* =====================
+   Status Indicators
+   ===================== */

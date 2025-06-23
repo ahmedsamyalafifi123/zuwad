@@ -1,0 +1,175 @@
+/**
+ * Zuwad Plugin - Student Reports Styles
+ * 
+ * This file contains styles for the student reports functionality
+ * Organized into logical sections:
+ * - Modal components
+ * - Form elements
+ * - UI components
+ * - Image preview and handling
+ */
+
+/* =====================
+   Modal Components
+   ===================== */
+.zuwad-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.zuwad-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    /* height: 90vh; */
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.zuwad-close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.zuwad-close-modal:hover {
+    color: #000;
+}
+
+/* =====================
+   Form Elements
+   ===================== */
+.zuwad-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zuwad-form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.zuwad-form-col {
+    flex: 1;
+}
+
+.zuwad-form-col label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.zuwad-form-col input,
+.zuwad-form-col select,
+.zuwad-form-col textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.zuwad-form-col textarea {
+    height: 100px;
+}
+
+.zuwad-submit-button {
+    padding: 10px;
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* =====================
+   UI Components
+   ===================== */
+#last-report-date {
+    font-weight: bold;
+    color: #0073aa;
+    margin-bottom: 10px;
+}
+
+.student-result {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.student-result:hover {
+    background-color: #f9f9f9;
+}
+
+#student-search-report {
+    width: 50%;
+    padding: 0px 10px;
+}
+
+#open-report-modal {
+    width: 100%;
+}
+
+/* Horizontal line with text in center */
+.line-with-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #000; /* Horizontal line */
+    position: relative;
+    padding: 10px 0; /* Space above and below the line */
+}
+
+.line-with-text span {
+    position: absolute;
+    background-color: white; /* To hide part of the line behind the word */
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+/* =====================
+   Image Preview
+   ===================== */
+#zoom-image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual image styling */
+#zoom-image-preview img {
+width: 140px;
+height: 140px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* Hover effect for images */
+#zoom-image-preview img:hover {
+    border-color: #0073aa;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}

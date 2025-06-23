@@ -1,0 +1,576 @@
+/* ======== wa-send-form ========*/
+
+.waapi-media-sender-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Tajawal', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.waapi-header {
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.waapi-header:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 4px;
+    background: #8b0628;
+    border-radius: 2px;
+}
+
+.waapi-header h2 {
+    color: #8b0628;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.waapi-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.waapi-form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.waapi-form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.waapi-file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+}
+
+.waapi-file-upload input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.waapi-file-label {
+    display: block;
+    padding: 12px 20px;
+    background: #f7f7f7;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    text-align: center;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.waapi-file-upload:hover .waapi-file-label {
+    background: #f0f0f0;
+    border-color: #ccc;
+}
+
+.waapi-image-preview {
+    margin-top: 15px;
+    text-align: center;
+    min-height: 150px;
+    background: #f9f9f9;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    display: none;
+    padding: 15px;
+}
+
+.waapi-image-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.waapi-form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 120px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.waapi-form-group textarea:focus {
+    border-color: #f7bf00;
+    outline: none;
+}
+
+.waapi-form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.waapi-send-btn, .waapi-stop-btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-family: 'Tajawal', sans-serif;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* .waapi-send-btn {
+    background: #147b6b;
+    color: white;
+} */
+
+.waapi-send-btn:hover {
+    background: #8b0628;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 6, 40, 0.3);
+}
+
+.waapi-stop-btn {
+    background: #f7bf00;
+    color: #333;
+}
+
+.waapi-stop-btn:hover {
+    background: #e3af00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(247, 191, 0, 0.3);
+}
+
+.waapi-progress-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.waapi-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.waapi-progress {
+    background-color: #e9e9e9;
+    border-radius: 30px;
+    height: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.waapi-progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #8b0628, #f7bf00);
+    border-radius: 30px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+.waapi-log-container {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.waapi-log-container h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 2px solid #8b0628;
+    padding-bottom: 8px;
+}
+
+.waapi-log {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.waapi-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+.waapi-log::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.waapi-log::-webkit-scrollbar-thumb {
+    background: #8b0628;
+    border-radius: 3px;
+}
+
+.waapi-log-entry {
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    border-left: 4px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.waapi-log-entry:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.waapi-log-entry.success {
+    border-left-color: #28a745;
+    background: #f8fff9;
+}
+
+.waapi-log-entry.error {
+    border-left-color: #dc3545;
+    background: #fff8f8;
+}
+
+.waapi-log-entry.skipped {
+    border-left-color: #ffc107;
+    background: #fff9f0;
+}
+
+.waapi-log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.waapi-log-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.waapi-log-timestamp {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.waapi-log-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.waapi-log-status {
+    color: #555;
+    flex: 1;
+}
+
+.waapi-log-type {
+    font-size: 0.85em;
+    color: #8b0628;
+    background: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+}
+
+/* Animation for new log entries */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.waapi-log-entry {
+    animation: slideIn 0.3s ease-out;
+}
+
+.waapi-student-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.waapi-student-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.waapi-student-phone {
+    color: #666;
+    font-size: 14px;
+}
+
+.waapi-message-status {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.waapi-log-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.waapi-log-entry.success {
+    background-color: rgba(0, 128, 0, 0.1);
+}
+
+.waapi-log-entry.error {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.waapi-log-entry.skipped {
+    background-color: rgba(255, 165, 0, 0.1);
+}
+
+.waapi-log-name {
+    font-weight: bold;
+    width: 25%;
+}
+
+.waapi-log-phone {
+    width: 20%;
+}
+
+.waapi-log-message {
+    width: 45%;
+}
+
+.waapi-log-status {
+    width: 10%;
+    text-align: center;
+}
+
+.waapi-reset-btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.waapi-reset-btn:hover {
+    background-color: #e68a00;
+}
+
+.waapi-progress-container {
+    margin: 15px 0;
+}
+
+.waapi-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.waapi-progress {
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.waapi-progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.waapi-pause-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.waapi-resume-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.waapi-terminate-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Add teacher filter styles */
+.custom-dropdown {
+    position: relative;
+    user-select: none;
+    width: 100%;
+    z-index: 100;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+}
+
+.dropdown-header {
+    padding: 12px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f1f9f4;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 5px 0;
+}
+
+/* Add summary section styles */
+.waapi-summary-section {
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+}
+
+.waapi-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #8b0628;
+}
+
+.waapi-summary-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.waapi-summary-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.waapi-summary-status.running {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.waapi-summary-status.paused {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.waapi-summary-status.terminated {
+    background: #fbe9e7;
+    color: #d84315;
+}
+
+.waapi-summary-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.waapi-summary-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.waapi-summary-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.waapi-summary-item.full-width {
+    grid-column: 1 / -1;
+    background: #f0f7ff;
+    border-left: 4px solid #8b0628;
+}
+
+.waapi-summary-item.full-width .waapi-summary-value {
+    font-size: 16px;
+    color: #8b0628;
+    font-weight: 500;
+}
+
+.waapi-summary-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.waapi-summary-value {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}

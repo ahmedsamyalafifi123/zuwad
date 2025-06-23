@@ -1,0 +1,404 @@
+/* Student Dashboard Styles */
+.zuwad-dashboard {
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+    max-width: 100%;
+    margin: 0 auto;
+    color: #333;
+}
+
+.zuwad-dashboard h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.zuwad-dashboard h2:after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: #3498db;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Stats Container */
+.zuwad-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.zuwad-stat-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    padding: 25px;
+    text-align: center;
+    min-width: 180px;
+    flex: 1;
+    min-height: 160px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.zuwad-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+.zuwad-stat-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #3498db;
+}
+
+.zuwad-stat-card.active:before {
+    background: #2ecc71;
+}
+
+.zuwad-stat-card.pending:before {
+    background: #f39c12;
+}
+
+.zuwad-stat-card.inactive:before {
+    background: #e74c3c;
+}
+
+.zuwad-stat-card.countries:before {
+    background: #9b59b6;
+}
+
+.zuwad-stat-card.teachers:before {
+    background: #1abc9c;
+}
+
+.zuwad-stat-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #3498db;
+    transition: transform 0.3s ease;
+}
+
+.zuwad-stat-card:hover .zuwad-stat-icon {
+    transform: scale(1.2);
+}
+
+.zuwad-stat-card.active .zuwad-stat-icon {
+    color: #2ecc71;
+}
+
+.zuwad-stat-card.pending .zuwad-stat-icon {
+    color: #f39c12;
+}
+
+.zuwad-stat-card.inactive .zuwad-stat-icon {
+    color: #e74c3c;
+}
+
+.zuwad-stat-card.countries .zuwad-stat-icon {
+    color: #9b59b6;
+}
+
+.zuwad-stat-card.teachers .zuwad-stat-icon {
+    color: #1abc9c;
+}
+
+.zuwad-stat-value {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.zuwad-stat-label {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Search and Filters */
+.zuwad-search-container {
+    margin-bottom: 30px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+#zuwad-search-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#zuwad-search-input:focus {
+    border-color: #3498db;
+    box-shadow: inset 0 1px 3px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.zuwad-filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.zuwad-filters select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 150px;
+    background-color: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.zuwad-filters select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.zuwad-export-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.zuwad-export-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.zuwad-export-btn:before {
+    content: '📊';
+    font-size: 16px;
+}
+
+/* Table Styles */
+.zuwad-table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+#zuwad-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+#zuwad-users-table th, 
+#zuwad-users-table td {
+    padding: 15px;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}
+
+#zuwad-users-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: #2c3e50;
+    white-space: nowrap;
+}
+
+#zuwad-users-table th:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #3498db;
+}
+
+#zuwad-users-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+#zuwad-users-table tbody tr:hover {
+    background-color: #f1f9ff;
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 5;
+    position: relative;
+}
+
+.zuwad-loading {
+    text-align: center;
+    padding: 40px !important;
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+/* Pagination */
+.zuwad-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.zuwad-pagination button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.zuwad-pagination button:hover:not(:disabled) {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.zuwad-pagination button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+#zuwad-page-info {
+    font-size: 16px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Status Indicators */
+.status-indicator {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status-active {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+}
+
+.status-pending {
+    background-color: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+}
+
+.status-inactive {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .zuwad-stat-card {
+        min-width: 200px;
+        padding: 20px;
+    }
+    
+    .zuwad-stat-icon {
+        font-size: 2.5rem;
+    }
+    
+    .zuwad-stat-value {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .zuwad-stats-container {
+        gap: 15px;
+    }
+    
+    .zuwad-stat-card {
+        min-width: calc(33.333% - 15px);
+        flex: 0 0 calc(33.333% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .zuwad-dashboard h2 {
+        font-size: 1.8rem;
+    }
+    
+    .zuwad-stat-card {
+        min-width: calc(50% - 15px);
+        flex: 0 0 calc(50% - 15px);
+    }
+    
+    .zuwad-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .zuwad-filters select,
+    .zuwad-export-btn {
+        width: 100%;
+    }
+    
+    #zuwad-users-table {
+        font-size: 13px;
+    }
+    
+    #zuwad-users-table th, 
+    #zuwad-users-table td {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .zuwad-stat-card {
+        min-width: 100%;
+        flex: 0 0 100%;
+    }
+    
+    .zuwad-pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .zuwad-pagination button {
+        width: 100%;
+    }
+}
